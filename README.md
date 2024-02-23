@@ -8,7 +8,8 @@ Right now it just prints to stdout.
 ## Setup
 
 1. You need the ENV vars found in `config/runtime.exs`
-2. Edit `lib/chat_writes/message_collector.ex`'s `handle_most_common/1` function to do whatever.
+
+2. Edit `lib/message_collector.ex`'s `handle_most_common/1` function to do whatever.
 
 
 ## Starting
