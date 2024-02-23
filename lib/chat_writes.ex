@@ -1,4 +1,8 @@
 defmodule ChatWrites do
+  @moduledoc """
+  The twitch chat bot event handler.
+  We handle the message event here and add the message text to the message collector.
+  """
   use TwitchChat.Bot
 
   alias ChatWrites.MessageCollector

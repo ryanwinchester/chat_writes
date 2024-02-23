@@ -8,7 +8,8 @@ defmodule ChatWrites.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      ChatWrites.MessageCollector,
+      {ChatWrites.MessageCollector,
+       Application.fetch_env!(:chat_writes, ChatWrites.MessageCollector)},
       {TwitchChat.Supervisor, Application.fetch_env!(:chat_writes, :bot)}
     ]
 
