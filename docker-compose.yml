@@ -2,6 +2,7 @@ version: '3.8'
 services:
   chat_writes:
     build: .
+    command: mix run --no-halt
     environment:
       TWITCH_USER: ${TWITCH_USER}
       TWITCH_OAUTH_TOKEN: ${TWITCH_OAUTH_TOKEN}
