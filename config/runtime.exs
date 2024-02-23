@@ -14,5 +14,4 @@ config :chat_writes, ChatWrites.MessageCollector,
   interval_ms: System.get_env("CHAT_INTERVAL", "5000") |> String.to_integer()
 
 # Logger config. Valid values are: `debug, info, warning, error`.
-config :logger, :console,
-  level: System.get_env("LOG_LEVEL", "info") |> String.to_existing_atom()
+config :logger, :console, level: System.get_env("LOG_LEVEL", "info") |> String.to_existing_atom()
