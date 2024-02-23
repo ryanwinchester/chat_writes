@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  chat_writes:
+    build: .
+    environment:
+      TWITCH_USER: ${TWITCH_USER}
+      TWITCH_OAUTH_TOKEN: ${TWITCH_OAUTH_TOKEN}
+      CHAT_INTERVAL: ${CHAT_INTERVAL}
+      LOG_LEVEL: ${LOG_LEVEL}

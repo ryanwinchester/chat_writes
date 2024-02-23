@@ -68,7 +68,7 @@ defmodule ChatWrites.MessageCollector do
       |> Enum.sort_by(fn {_w, freq} -> freq end)
       |> List.first()
 
-    with {most_common, _} <- result do
+    with [most_common | _ ] <- result do
       handle_most_common(most_common)
     end
 
@@ -80,6 +80,13 @@ defmodule ChatWrites.MessageCollector do
   # ----------------------------------------------------------------------------
   # Helpers
   # ----------------------------------------------------------------------------
+
+  def get_most_common(messages) do
+    messages
+    |> Enum.frequencies()
+    |> Enum.sort_by(fn {_msg, freq} -> freq end)
+    |> Enum.map(fn {msg, _freq} -> msg end)
+  end
 
   defp handle_most_common(message) do
     IO.puts(message)
