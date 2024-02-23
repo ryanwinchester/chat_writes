@@ -1,8 +1,7 @@
 defmodule ChatWrites.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
-  @moduledoc false
-
+  @moduledoc """
+  Start the application and supervision tree.
+  """
   use Application
 
   @impl true
@@ -13,8 +12,6 @@ defmodule ChatWrites.Application do
       {TwitchChat.Supervisor, Application.fetch_env!(:chat_writes, :bot)}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: ChatWrites.Supervisor]
     Supervisor.start_link(children, opts)
   end
