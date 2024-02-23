@@ -1,21 +1,11 @@
 # ChatWrites
 
-**TODO: Add description**
+Do stuff with the most common chat messages.
 
-## Installation
+Right now it just prints to stdout.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `chat_writes` to your list of dependencies in `mix.exs`:
 
-```elixir
-def deps do
-  [
-    {:chat_writes, "~> 0.1.0"}
-  ]
-end
-```
+## Setup
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/chat_writes>.
-
+1. You need the ENV vars found in `config/runtime.exs`
+2. Edit `lib/chat_writes/message_collector.ex`'s `handle_most_common/1` function to do whatever.

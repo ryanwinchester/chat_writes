@@ -1,18 +1,11 @@
 defmodule ChatWrites do
-  @moduledoc """
-  Documentation for `ChatWrites`.
-  """
+  use TwitchChat.Bot
 
-  @doc """
-  Hello world.
+  alias ChatWrites.MessageCollector
+  alias TwitchChat.Events.Message
 
-  ## Examples
-
-      iex> ChatWrites.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  @impl TwitchChat.Bot
+  def handle_event(%Message{message: message} = _event) do
+    MessageCollector.add(message)
   end
 end

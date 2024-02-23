@@ -8,8 +8,8 @@ defmodule ChatWrites.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: ChatWrites.Worker.start_link(arg)
-      # {ChatWrites.Worker, arg}
+      ChatWrites.MessageCollector,
+      {TwitchChat.Supervisor, Application.fetch_env!(:chat_writes, :bot)}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
