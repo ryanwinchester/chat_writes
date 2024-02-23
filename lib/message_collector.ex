@@ -62,7 +62,7 @@ defmodule ChatWrites.MessageCollector do
 
   @impl GenServer
   def handle_info(:tick, state) do
-    with [most_common | _] <- get_most_common(state.messages) do
+    with [{most_common, _freq} | _] <- get_most_common(state.messages) do
       handle_most_common(most_common)
     end
 
@@ -79,7 +79,6 @@ defmodule ChatWrites.MessageCollector do
     messages
     |> Enum.frequencies()
     |> Enum.sort_by(fn {_msg, freq} -> freq end, :desc)
-    |> Enum.map(fn {msg, _freq} -> msg end)
   end
 
   defp handle_most_common(message) do
