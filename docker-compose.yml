@@ -8,3 +8,6 @@ services:
       TWITCH_OAUTH_TOKEN: ${TWITCH_OAUTH_TOKEN}
       CHAT_INTERVAL: ${CHAT_INTERVAL}
       LOG_LEVEL: ${LOG_LEVEL}
+      PORT: ${PORT:-4040}
+    ports:
+      - ${PORT:-4040}:${PORT:-4040}

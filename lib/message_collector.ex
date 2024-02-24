@@ -63,7 +63,7 @@ defmodule ChatWrites.MessageCollector do
   @impl GenServer
   def handle_info(:tick, state) do
     with [{most_common, _freq} | _] <- get_most_common(state.messages) do
-      handle_most_common(most_common)
+      ChatWrites.TCPServer.send(most_common)
     end
 
     timer_ref = schedule_next(state.interval_ms)
@@ -79,10 +79,6 @@ defmodule ChatWrites.MessageCollector do
     messages
     |> Enum.frequencies()
     |> Enum.sort_by(fn {_msg, freq} -> freq end, :desc)
-  end
-
-  defp handle_most_common(message) do
-    IO.puts(message)
   end
 
   defp schedule_next(interval_ms) do
