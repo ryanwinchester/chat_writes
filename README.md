@@ -20,8 +20,25 @@ Start the application with `mix`
 mix run --no-halt
 ```
 
+Starting with Docker
+
+```
+docker composer up
+```
+
 Starting with the Elixir interactive shell
 
 ```
 iex -S mix
 ```
+
+Start `neovim` with
+
+```
+nvim . --listen /tmp/nvim-server
+```
+
+See:
+- https://neovim.io/doc/user/remote.html#--remote-send
+- https://neovim.io/doc/user/starting.html#--listen
+(Thanks @dmmulroy)

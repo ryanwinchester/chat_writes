@@ -35,8 +35,10 @@ defmodule ChatWrites.MessageCollector do
   @impl GenServer
   def init(opts) do
     interval_ms = Keyword.get(opts, :interval_ms, @default_interval_ms)
+    nvim_addr = Keyword.fetch!(opts, :nvim_addr)
 
     state = %{
+      nvim_addr: nvim_addr,
       interval_ms: interval_ms,
       timer_ref: nil,
       messages: []
@@ -63,7 +65,7 @@ defmodule ChatWrites.MessageCollector do
   @impl GenServer
   def handle_info(:tick, state) do
     with [{most_common, _freq} | _] <- get_most_common(state.messages) do
-      ChatWrites.TCPServer.send(most_common)
+      System.cmd("nvim", ["--server", state.nvim_addr, "--remote-send",  "#{most_common}"])
     end
 
     timer_ref = schedule_next(state.interval_ms)

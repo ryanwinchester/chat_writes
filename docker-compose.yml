@@ -7,6 +7,7 @@ services:
       TWITCH_USER: ${TWITCH_USER}
       TWITCH_OAUTH_TOKEN: ${TWITCH_OAUTH_TOKEN}
       CHAT_INTERVAL: ${CHAT_INTERVAL}
+      NVIM_ADDR: ${NVIM_ADDR:-/tmp/nvim-server}
       LOG_LEVEL: ${LOG_LEVEL}
       PORT: ${PORT:-4040}
     ports:

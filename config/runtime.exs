@@ -15,6 +15,7 @@ config :chat_writes, ChatWrites.TCPServer,
 
 # Chat message collector interval in milliseconds.
 config :chat_writes, ChatWrites.MessageCollector,
+  nvim_addr: System.get_env("NVIM_ADDR", "/tmp/nvim-server"),
   interval_ms: System.get_env("CHAT_INTERVAL", "5000") |> String.to_integer()
 
 # Logger config. Valid values are: `debug, info, warning, error`.
