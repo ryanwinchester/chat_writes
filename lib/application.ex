@@ -6,10 +6,17 @@ defmodule ChatWrites.Application do
 
   @impl true
   def start(_type, _args) do
+    server_opts = Application.fetch_env!(:chat_writes, ChatWrites.TCPAcceptor)
+    message_collector_opts = Application.fetch_env!(:chat_writes, ChatWrites.MessageCollector)
+    twitch_bot_opts = Application.fetch_env!(:chat_writes, :bot)
+
     children = [
-      {ChatWrites.MessageCollector,
-       Application.fetch_env!(:chat_writes, ChatWrites.MessageCollector)},
-      {TwitchChat.Supervisor, Application.fetch_env!(:chat_writes, :bot)}
+      {Task.Supervisor, name: ChatWrites.TaskSupervisor},
+      Supervisor.child_spec({Task, fn -> ChatWrites.TCPAcceptor.accept(server_opts) end},
+        restart: :permanent
+      ),
+      {ChatWrites.MessageCollector, message_collector_opts},
+      {TwitchChat.Supervisor, twitch_bot_opts}
     ]
 
     opts = [strategy: :one_for_one, name: ChatWrites.Supervisor]

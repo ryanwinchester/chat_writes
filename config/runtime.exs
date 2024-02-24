@@ -9,6 +9,10 @@ config :chat_writes,
     channels: [System.fetch_env!("TWITCH_USER")]
   ]
 
+# TCP Server config.
+config :chat_writes, ChatWrites.TCPAcceptor,
+  port: System.get_env("PORT", "4040") |> String.to_integer()
+
 # Chat message collector interval in milliseconds.
 config :chat_writes, ChatWrites.MessageCollector,
   interval_ms: System.get_env("CHAT_INTERVAL", "5000") |> String.to_integer()
